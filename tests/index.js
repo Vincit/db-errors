@@ -2,14 +2,7 @@
 
 const os = require('os');
 const path = require('path');
-const expect = require('expect.js');
-const Promise = require('bluebird');
-
 const TestSession = require('../testUtils').TestSession;
-const wrapError = require('../').wrapError;
-
-const UniqueViolationError = require('../').UniqueViolationError;
-const ConstraintViolationError = require('../').ConstraintViolationError;
 
 describe('tests', () => {
 

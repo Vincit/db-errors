@@ -1,7 +1,13 @@
 'use strict';
 
 const tables = require('../testUtils').tables;
+const expect = require('expect.js');
 const Promise = require('bluebird');
+const wrapError = require('../').wrapError;
+
+const DBError = require('../').DBError;
+const UniqueViolationError = require('../').UniqueViolationError;
+const ConstraintViolationError = require('../').ConstraintViolationError;
 
 module.exports = (session) => {
   const knex = session.knex;
@@ -14,7 +20,7 @@ module.exports = (session) => {
 
       build: (table) => {
         table.increments('id');
-        table.string('i_am_unique_col').unique();
+        table.integer('i_am_unique_col').unique();
         table.string('uniquePart1');
         table.string('uniquePart2');
         table.unique(['uniquePart1', 'uniquePart2']);
@@ -25,14 +31,15 @@ module.exports = (session) => {
 
       it('single column', () => {
         return Promise.mapSeries([
-          {i_am_unique_col: 'a'},
-          {i_am_unique_col: 'a'}
+          {i_am_unique_col: 1},
+          {i_am_unique_col: 1}
         ], row => {
           return knex(table).insert(row);
-        }).reflect().catch(res => {
+        }).reflect().then(res => {
           expect(res.isRejected()).to.equal(true);
           const error = wrapError(res.reason());
 
+          expect(error).to.be.a(DBError);
           expect(error).to.be.a(ConstraintViolationError);
           expect(error).to.be.an(UniqueViolationError);
 
@@ -49,15 +56,14 @@ module.exports = (session) => {
 
       it('multiple columns', () => {
         return Promise.mapSeries([
-          {uniquePart1: 'x', uniquePart2: 'y', i_am_unique_col: '1'},
-          {uniquePart1: 'x', uniquePart2: 'y', i_am_unique_col: '2'}
+          {uniquePart1: 'x', uniquePart2: 'y', i_am_unique_col: 1},
+          {uniquePart1: 'x', uniquePart2: 'y', i_am_unique_col: 2}
         ], row => {
           return knex(table).insert(row);
-        }).reflect().catch(res => {
+        }).reflect().then(res => {
           expect(res.isRejected()).to.equal(true);
           const error = wrapError(res.reason());
 
-          expect(error).to.be.a(ConstraintViolationError);
           expect(error).to.be.an(UniqueViolationError);
 
           if (session.isPostgres || session.isSqlite) {
@@ -77,14 +83,13 @@ module.exports = (session) => {
 
       it('single column', () => {
         return Promise.mapSeries([
-          knex(table).insert({i_am_unique_col: 'a'}),
-          knex(table).insert({i_am_unique_col: 'b'}),
-          knex(table).update({i_am_unique_col: 'a'}).where('i_am_unique_col', 'b')
-        ], it => it).reflect().catch(res => {
+          knex(table).insert({i_am_unique_col: 1}),
+          knex(table).insert({i_am_unique_col: 2}),
+          knex(table).update({i_am_unique_col: 1}).where('i_am_unique_col', 2)
+        ], it => it).reflect().then(res => {
           expect(res.isRejected()).to.equal(true);
           const error = wrapError(res.reason());
 
-          expect(error).to.be.a(ConstraintViolationError);
           expect(error).to.be.an(UniqueViolationError);
 
           if (session.isPostgres || session.isSqlite) {
@@ -100,14 +105,13 @@ module.exports = (session) => {
 
       it('single column subquery', () => {
         return Promise.mapSeries([
-          knex(table).insert({i_am_unique_col: 'a'}),
-          knex(table).insert({i_am_unique_col: 'b'}),
-          knex(table).update({i_am_unique_col: knex.raw('LOWER(?)', 'a')}).where('i_am_unique_col', 'b')
-        ], it => it).reflect().catch(res => {
+          knex(table).insert({i_am_unique_col: 1}),
+          knex(table).insert({i_am_unique_col: 2}),
+          knex(table).update({i_am_unique_col: knex.raw('i_am_unique_col - 1')}).where('i_am_unique_col', 2)
+        ], it => it).reflect().then(res => {
           expect(res.isRejected()).to.equal(true);
           const error = wrapError(res.reason());
 
-          expect(error).to.be.a(ConstraintViolationError);
           expect(error).to.be.an(UniqueViolationError);
 
           if (session.isPostgres || session.isSqlite) {

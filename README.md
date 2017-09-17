@@ -28,15 +28,23 @@ function errorHandler(err) {
 
 #### DBError
 
-Base class for all errors.
+```ts
+class DBError extends Error {
+  // The error thrown by the database client.
+  nativeError: Error
+}
+```
 
-properties: `nativeError`
+Base class for all errors.
 
 #### ConstraintViolationError
 
-```js
+```ts
 class ConstraintViolationError extends DBError {
-
+  // The constraint that was violated.
+  //
+  // Available for: postgres, mysql
+  constraint: string
 }
 ```
 
@@ -44,7 +52,7 @@ A base class for all constraint violation errors
 
 #### UniqueViolationError
 
-```js
+```ts
 class UniqueViolationError extends ConstraintViolationError {
   // The columns that failed.
   //
@@ -55,11 +63,6 @@ class UniqueViolationError extends ConstraintViolationError {
   //
   // Available for: postgres, sqlite
   table: string
-
-  // The constraint that was violated.
-  //
-  // Available for: postgres, mysql
-  constraint: string
 }
 ```
 

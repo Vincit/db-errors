@@ -1,0 +1,42 @@
+{
+  "name": "db-errors",
+  "version": "0.1.0",
+  "description": "Unified node.js error API for mysql, postgres and sqlite3",
+  "main": "lib/dbErrors.js",
+  "scripts": {
+    "test": "mocha --slow 10 --timeout 15000 --reporter spec --recursive tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Vincit/db-errors.git"
+  },
+  "keywords": [
+    "mysql",
+    "postgres",
+    "postgresql",
+    "sqlite3",
+    "error",
+    "errors",
+    "error",
+    "handling",
+    "error",
+    "handler"
+  ],
+  "author": "Sami Koskimäki (sami.koskimaki@vincit.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Vincit/db-errors/issues"
+  },
+  "homepage": "https://github.com/Vincit/db-errors#readme",
+  "devDependencies": {
+    "bluebird": "^3.5.0",
+    "expect.js": "^0.3.1",
+    "knex": "^0.13.0",
+    "lodash": "^4.17.4",
+    "mocha": "^3.5.3",
+    "mysql": "^2.14.1",
+    "mysql2": "^1.4.2",
+    "pg": "^7.3.0",
+    "sqlite3": "^3.1.11"
+  }
+}

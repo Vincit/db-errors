@@ -3,9 +3,10 @@
 const Promise = require('bluebird');
 
 function tables(session, tables) {
-  const schema = session.knex.schema;
+  const knex = session.knex;
+  const schema = knex.schema;
 
-  beforeEach(() => {
+  before(() => {
     return Promise.mapSeries(tables, table => {
       return schema.dropTableIfExists(table.name);
     }).then(() => {
@@ -15,7 +16,13 @@ function tables(session, tables) {
     });
   });
 
-  afterEach(() => {
+  beforeEach(() => {
+    return Promise.mapSeries(tables, table => {
+      return knex(table.name).delete();
+    });
+  });
+
+  after(() => {
     return Promise.mapSeries(tables, table => {
       return schema.dropTableIfExists(table.name);
     });

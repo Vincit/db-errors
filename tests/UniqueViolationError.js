@@ -129,10 +129,3 @@ module.exports = (session) => {
 
   });
 };
-
-function logError(err) {
-  const msg = err.nativeError.message;
-  delete err.nativeError.message;
-  err.nativeError.message = msg;
-  console.log(JSON.stringify(err, null, 2));
-}

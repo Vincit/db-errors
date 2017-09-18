@@ -37,6 +37,7 @@ describe('tests', () => {
     describe(knexConfig.client, () => {
 
       require('./UniqueViolationError')(session);
+      require('./NotNullViolationError')(session);
 
     });
   });

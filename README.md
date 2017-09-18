@@ -6,9 +6,10 @@ pass these errors through. It's usually very difficult to reason with these erro
 
 WARNING: This project is still in very early alpha stage and should not be used in production.
 
-## API
+<br>
+<br>
 
-### Usage
+## Usage
 
 ```js
 const { wrapError, DBError, UniqueViolationError } = require('db-errors');
@@ -17,16 +18,22 @@ function errorHandler(err) {
   const dbError = wrapError(err);
 
   if (dbError instanceof UniqueViolationError) {
-    console.log(`Unique constraint violation for table ${dbError.table} and columns ${dbError.columns}`);
+    console.log(`Unique constraint ${dbError.constraint} failedf for table ${dbError.table} and columns ${dbError.columns}`);
   } else if (dbError instanceof DBError) {
     console.log(`Some unknown DB error ${dbError.nativeError}`);
   }
 }
 ```
 
-### Errors
+<br>
+<br>
 
-#### DBError
+## API
+
+<br>
+<br>
+
+### DBError
 
 ```ts
 class DBError extends Error {
@@ -37,20 +44,23 @@ class DBError extends Error {
 
 Base class for all errors.
 
-#### ConstraintViolationError
+<br>
+<br>
+
+### ConstraintViolationError
 
 ```ts
 class ConstraintViolationError extends DBError {
-  // The constraint that was violated.
-  //
-  // Available for: postgres, mysql
-  constraint: string
+  // No own properties.
 }
 ```
 
 A base class for all constraint violation errors
 
-#### UniqueViolationError
+<br>
+<br>
+
+### UniqueViolationError
 
 ```ts
 class UniqueViolationError extends ConstraintViolationError {
@@ -63,8 +73,35 @@ class UniqueViolationError extends ConstraintViolationError {
   //
   // Available for: postgres, sqlite
   table: string
+
+  // The constraint that was violated.
+  //
+  // Available for: postgres, mysql
+  constraint: string
 }
 ```
+
+<br>
+<br>
+
+### NotNullViolationError
+
+```ts
+class NotNullViolationError extends ConstraintViolationError {
+  // The column that failed.
+  //
+  // Available for: postgres, sqlite, mysql
+  column: string
+
+  // The table that has the colums.
+  //
+  // Available for: postgres, sqlite
+  table: string
+}
+```
+
+<br>
+<br>
 
 ## Development setup
 

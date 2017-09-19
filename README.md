@@ -127,7 +127,7 @@ class ForeignKeyViolationError extends ConstraintViolationError {
 ```ts
 // This is not available for MySql since MySql doesn't have check constraints.
 class CheckViolationError extends ConstraintViolationError {
-  // The table that has the foreign key.
+  // The table that has the check constraint.
   //
   // Available for: postgres
   table: string

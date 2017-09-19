@@ -12,14 +12,24 @@ WARNING: This project is still in very early alpha stage and should not be used 
 ## Usage
 
 ```js
-const { wrapError, DBError, UniqueViolationError } = require('db-errors');
+const {
+  wrapError,
+  DBError,
+  UniqueViolationError,
+  NotNullViolationError
+} = require('db-errors');
 
 function errorHandler(err) {
-  const dbError = wrapError(err);
+  // wrapError function takes any error and returns a DBError subclass instance if
+  // the input was an error thrown by the supported database drivers. Otherwise
+  // the input error is returned.
+  err = wrapError(err);
 
-  if (dbError instanceof UniqueViolationError) {
-    console.log(`Unique constraint ${dbError.constraint} failedf for table ${dbError.table} and columns ${dbError.columns}`);
-  } else if (dbError instanceof DBError) {
+  if (err instanceof UniqueViolationError) {
+    console.log(`Unique constraint ${err.constraint} failed for table ${err.table} and columns ${err.columns}`);
+  } else if (err instanceof NotNullViolationError) {
+    console.log(`Not null constraint ${err.constraint} failed for table ${err.table}`);
+  } else if (err instanceof DBError) {
     console.log(`Some unknown DB error ${dbError.nativeError}`);
   }
 }

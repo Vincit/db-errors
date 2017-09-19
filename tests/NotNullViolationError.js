@@ -41,7 +41,7 @@ module.exports = (session) => {
 
             expect(error.column).to.eql('not_nullable');
 
-            if (session.isPostgres || session.isSqlite) {
+            if (session.isPostgres() || session.isSqlite()) {
               expect(error.table).to.equal(table);
             }
           });
@@ -61,7 +61,7 @@ module.exports = (session) => {
 
           expect(error.column).to.eql('notNullableString');
 
-          if (session.isPostgres || session.isSqlite) {
+          if (session.isPostgres() || session.isSqlite()) {
             expect(error.table).to.equal(table);
           }
         });
@@ -85,7 +85,7 @@ module.exports = (session) => {
 
           expect(error.column).to.eql('not_nullable');
 
-          if (session.isPostgres || session.isSqlite) {
+          if (session.isPostgres() || session.isSqlite()) {
             expect(error.table).to.equal(table);
           }
         });
@@ -104,7 +104,7 @@ module.exports = (session) => {
           expect(error).to.be.a(NotNullViolationError);
           expect(error.column).to.eql('notNullableString');
 
-          if (session.isPostgres || session.isSqlite) {
+          if (session.isPostgres() || session.isSqlite()) {
             expect(error.table).to.equal(table);
           }
         });

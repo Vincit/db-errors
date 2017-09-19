@@ -9,11 +9,19 @@ describe('tests', () => {
   const testDatabaseConfigs = [{
     client: 'sqlite3',
     useNullAsDefault: true,
+
     connection: {
       filename: path.join(os.tmpdir(), 'db_errors_test.db')
+    },
+
+    pool: {
+      afterCreate: (conn, cb) => {
+        conn.run('PRAGMA foreign_keys = ON', cb);
+      }
     }
   }, {
     client: 'mysql',
+
     connection: {
       host: '127.0.0.1',
       user: 'db_errors',
@@ -21,6 +29,7 @@ describe('tests', () => {
     }
   }, {
     client: 'postgres',
+
     connection: {
       host: '127.0.0.1',
       user: 'db_errors',
@@ -38,6 +47,7 @@ describe('tests', () => {
 
       require('./UniqueViolationError')(session);
       require('./NotNullViolationError')(session);
+      require('./ForeignKeyViolationError')(session);
 
     });
   });

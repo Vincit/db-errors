@@ -8,15 +8,15 @@ class TestSession {
     this.knex = Knex(config.knexConfig);
   }
 
-  get isPostgres() {
+  isPostgres() {
     return isPostgres(this.knex);
   }
 
-  get isMySql() {
+  isMySql() {
     return isMySql(this.knex);
   }
 
-  get isSqlite() {
+  isSqlite() {
     return isSqlite(this.knex);
   }
 }

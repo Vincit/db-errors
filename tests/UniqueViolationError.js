@@ -43,12 +43,12 @@ module.exports = (session) => {
           expect(error).to.be.a(ConstraintViolationError);
           expect(error).to.be.an(UniqueViolationError);
 
-          if (session.isPostgres || session.isSqlite) {
+          if (session.isPostgres() || session.isSqlite()) {
             expect(error.columns).to.eql(['i_am_unique_col']);
             expect(error.table).to.equal(table);
           }
 
-          if (session.isPostgres || session.isMySql) {
+          if (session.isPostgres() || session.isMySql()) {
             expect(error.constraint).to.equal('thetable_i_am_unique_col_unique');
           }
         });
@@ -66,12 +66,12 @@ module.exports = (session) => {
 
           expect(error).to.be.an(UniqueViolationError);
 
-          if (session.isPostgres || session.isSqlite) {
+          if (session.isPostgres() || session.isSqlite()) {
             expect(error.columns).to.eql(['uniquePart1', 'uniquePart2']);
             expect(error.table).to.equal(table);
           }
 
-          if (session.isPostgres || session.isMySql) {
+          if (session.isPostgres() || session.isMySql()) {
             expect(error.constraint).to.equal('thetable_uniquepart1_uniquepart2_unique');
           }
         });
@@ -92,12 +92,12 @@ module.exports = (session) => {
 
           expect(error).to.be.an(UniqueViolationError);
 
-          if (session.isPostgres || session.isSqlite) {
+          if (session.isPostgres() || session.isSqlite()) {
             expect(error.columns).to.eql(['i_am_unique_col']);
             expect(error.table).to.equal(table);
           }
 
-          if (session.isPostgres || session.isMySql) {
+          if (session.isPostgres() || session.isMySql()) {
             expect(error.constraint).to.equal('thetable_i_am_unique_col_unique');
           }
         });
@@ -114,12 +114,12 @@ module.exports = (session) => {
 
           expect(error).to.be.an(UniqueViolationError);
 
-          if (session.isPostgres || session.isSqlite) {
+          if (session.isPostgres() || session.isSqlite()) {
             expect(error.columns).to.eql(['i_am_unique_col']);
             expect(error.table).to.equal(table);
           }
 
-          if (session.isPostgres || session.isMySql) {
+          if (session.isPostgres() || session.isMySql()) {
             expect(error.constraint).to.equal('thetable_i_am_unique_col_unique');
           }
         });

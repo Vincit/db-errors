@@ -103,6 +103,25 @@ class NotNullViolationError extends ConstraintViolationError {
 <br>
 <br>
 
+### ForeignKeyViolationError
+
+```ts
+class ForeignKeyViolationError extends ConstraintViolationError {
+  // The table that has the foreign key.
+  //
+  // Available for: postgres, mysql
+  table: string
+
+  // The constraint that was violated.
+  //
+  // Available for: postgres, mysql
+  constraint: string
+}
+```
+
+<br>
+<br>
+
 ## Development setup
 
 Install mysql and postgres. Then run the following commands.

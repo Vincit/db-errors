@@ -122,6 +122,26 @@ class ForeignKeyViolationError extends ConstraintViolationError {
 <br>
 <br>
 
+### CheckViolationError
+
+```ts
+// This is not available for MySql since MySql doesn't have check constraints.
+class CheckViolationError extends ConstraintViolationError {
+  // The table that has the foreign key.
+  //
+  // Available for: postgres
+  table: string
+
+  // The constraint that was violated.
+  //
+  // Available for: postgres
+  constraint: string
+}
+```
+
+<br>
+<br>
+
 ## Development setup
 
 Install mysql and postgres. Then run the following commands.

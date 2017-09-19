@@ -12,8 +12,16 @@ function tables(session, tables) {
       return schema.dropTableIfExists(table.name);
     }).then(() => {
       return Promise.mapSeries(tables, table => {
-        return schema.createTable(table.name, table.build);
-      })
+        if (table.build) {
+          return schema.createTable(table.name, table.build);
+        }
+      });
+    }).then(() => {
+      return Promise.mapSeries(tables, table => {
+        return Promise.mapSeries(table.raw || [], raw => {
+          return schema.raw(raw[session.dialect()]);
+        });
+      });
     });
   });
 

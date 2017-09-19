@@ -8,6 +8,10 @@ class TestSession {
     this.knex = Knex(config.knexConfig);
   }
 
+  dialect() {
+    return getDialect(this.knex);
+  }
+
   isPostgres() {
     return isPostgres(this.knex);
   }

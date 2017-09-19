@@ -48,6 +48,7 @@ describe('tests', () => {
       require('./UniqueViolationError')(session);
       require('./NotNullViolationError')(session);
       require('./ForeignKeyViolationError')(session);
+      require('./CheckViolationError')(session);
 
     });
   });

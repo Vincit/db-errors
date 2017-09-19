@@ -139,17 +139,3 @@ module.exports = (session) => {
 
   });
 };
-
-function logError(err) {
-  if (err.nativeError) {
-    const msg = err.nativeError.message;
-    delete err.nativeError.message;
-    err.nativeError.message = msg;
-  } else {
-    const msg = err.message;
-    delete err.message;
-    err.message = msg;
-  }
-
-  console.log(JSON.stringify(err, null, 2));
-}

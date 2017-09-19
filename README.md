@@ -4,7 +4,7 @@ This project is an attempt to create a unified API for node.js SQL DB driver err
 driver throws their own kind of errors and libraries like knex, Bookshelf and objection.js simply
 pass these errors through. It's usually very difficult to reason with these errors.
 
-WARNING: This project is still in very early alpha stage and should not be used in production.
+**WARNING**: This project is still in very early alpha stage and should not be used in production.
 
 <br>
 <br>

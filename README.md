@@ -28,7 +28,7 @@ function errorHandler(err) {
   if (err instanceof UniqueViolationError) {
     console.log(`Unique constraint ${err.constraint} failed for table ${err.table} and columns ${err.columns}`);
   } else if (err instanceof NotNullViolationError) {
-    console.log(`Not null constraint ${err.constraint} failed for table ${err.table}`);
+    console.log(`Not null constraint failed for table ${err.table} and column ${err.column}`);
   } else if (err instanceof DBError) {
     console.log(`Some unknown DB error ${dbError.nativeError}`);
   }
@@ -164,7 +164,7 @@ mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO db_errors"
 mysql -u root -e "CREATE DATABASE db_errors_test"
 ```
 
-Run the test:
+Run tests:
 
 ```shell
 npm test

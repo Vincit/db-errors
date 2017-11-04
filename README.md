@@ -152,6 +152,22 @@ class CheckViolationError extends ConstraintViolationError {
 <br>
 <br>
 
+### DataError
+
+```ts
+// Invalid data (string too long, invalid date etc.)
+//
+// NOTE: SQLite uses dynamic typing and doesn't throw this error.
+class DataError extends DBError {
+  // There is no easy way to parse data from these kind
+  // of errors.
+}
+```
+
+<br>
+<br>
+
+
 ## Development setup
 
 Install mysql and postgres. Then run the following commands.

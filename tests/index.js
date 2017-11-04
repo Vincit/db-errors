@@ -49,6 +49,7 @@ describe('tests', () => {
       require('./NotNullViolationError')(session);
       require('./ForeignKeyViolationError')(session);
       require('./CheckViolationError')(session);
+      require('./DataError')(session);
 
     });
   });

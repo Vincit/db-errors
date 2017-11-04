@@ -1,6 +1,7 @@
 'use strict';
 
 const tables = require('../testUtils').tables;
+const logError = require('../testUtils').logError;
 const expect = require('expect.js');
 const Promise = require('bluebird');
 const wrapError = require('../').wrapError;
@@ -32,6 +33,8 @@ module.exports = (session) => {
           .insert({not_nullable: null, notNullableString: 'foo'})
           .reflect()
           .then(res => {
+            logError(res);
+
             expect(res.isRejected()).to.equal(true);
             const error = wrapError(res.reason());
 
@@ -52,6 +55,8 @@ module.exports = (session) => {
         .insert({notNullableString: null, not_nullable: 1})
         .reflect()
         .then(res => {
+          logError(res);
+
           expect(res.isRejected()).to.equal(true);
           const error = wrapError(res.reason());
 
@@ -76,6 +81,8 @@ module.exports = (session) => {
           knex(table).insert({not_nullable: 1, notNullableString: 'foo'}),
           knex(table).update({not_nullable: null}).where('not_nullable', 1)
         ], it => it).reflect().then(res => {
+          logError(res);
+
           expect(res.isRejected()).to.equal(true);
           const error = wrapError(res.reason());
 
@@ -96,6 +103,8 @@ module.exports = (session) => {
           knex(table).insert({not_nullable: 1, notNullableString: 'foo'}),
           knex(table).update({notNullableString: null}).where('notNullableString', 'foo')
         ], it => it).reflect().then(res => {
+          logError(res);
+
           expect(res.isRejected()).to.equal(true);
           const error = wrapError(res.reason());
 

@@ -4,7 +4,8 @@
   "description": "Unified node.js error API for mysql, postgres and sqlite3",
   "main": "lib/dbErrors.js",
   "scripts": {
-    "test": "mocha --slow 10 --timeout 15000 --reporter spec --recursive tests"
+    "test": "mocha --slow 10 --timeout 15000 --reporter spec --recursive tests",
+    "test-travis": "mocha --slow 10 --timeout 15000 --reporter spec --recursive tests"
   },
   "repository": {
     "type": "git",

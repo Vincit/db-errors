@@ -1,6 +1,7 @@
 'use strict';
 
 const tables = require('../testUtils').tables;
+const logError = require('../testUtils').logError;
 const expect = require('expect.js');
 const Promise = require('bluebird');
 const wrapError = require('../').wrapError;
@@ -52,6 +53,8 @@ module.exports = (session) => {
 
       it('snake_case column', () => {
         return knex(table).insert({value1: 11}).reflect().then(res => {
+          logError(res);
+
           expect(res.isRejected()).to.equal(true);
           const error = wrapError(res.reason());
 
@@ -68,6 +71,8 @@ module.exports = (session) => {
 
       it('camelCase column', () => {
         return knex(table).insert({theValue: 21}).reflect().then(res => {
+          logError(res);
+
           expect(res.isRejected()).to.equal(true);
           const error = wrapError(res.reason());
 
@@ -88,6 +93,8 @@ module.exports = (session) => {
         return knex(table).insert({value1: 9}).returning('id').then(id => {
           return knex(table).update({value1: 10}).where('id', id[0]);
         }).reflect().then(res => {
+          logError(res);
+
           expect(res.isRejected()).to.equal(true);
           const error = wrapError(res.reason());
 
@@ -104,6 +111,8 @@ module.exports = (session) => {
         return knex(table).insert({theValue: 19}).returning('id').then(id => {
           return knex(table).update({theValue: 20}).where('id', id[0]);
         }).reflect().then(res => {
+          logError(res);
+
           expect(res.isRejected()).to.equal(true);
           const error = wrapError(res.reason());
 
@@ -120,17 +129,3 @@ module.exports = (session) => {
 
   });
 };
-
-function logError(err) {
-  if (err.nativeError) {
-    const msg = err.nativeError.message;
-    delete err.nativeError.message;
-    err.nativeError.message = msg;
-  } else {
-    const msg = err.message;
-    delete err.message;
-    err.message = msg;
-  }
-
-  console.log(JSON.stringify(err, null, 2));
-}

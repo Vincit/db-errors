@@ -1,6 +1,7 @@
 'use strict';
 
 const tables = require('../testUtils').tables;
+const logError = require('../testUtils').logError;
 const expect = require('expect.js');
 const Promise = require('bluebird');
 const wrapError = require('../').wrapError;
@@ -36,6 +37,8 @@ module.exports = (session) => {
         ], row => {
           return knex(table).insert(row);
         }).reflect().then(res => {
+          logError(res);
+
           expect(res.isRejected()).to.equal(true);
           const error = wrapError(res.reason());
 
@@ -61,6 +64,8 @@ module.exports = (session) => {
         ], row => {
           return knex(table).insert(row);
         }).reflect().then(res => {
+          logError(res);
+
           expect(res.isRejected()).to.equal(true);
           const error = wrapError(res.reason());
 
@@ -87,6 +92,8 @@ module.exports = (session) => {
           knex(table).insert({i_am_unique_col: 2}),
           knex(table).update({i_am_unique_col: 1}).where('i_am_unique_col', 2)
         ], it => it).reflect().then(res => {
+          logError(res);
+
           expect(res.isRejected()).to.equal(true);
           const error = wrapError(res.reason());
 
@@ -109,6 +116,8 @@ module.exports = (session) => {
           knex(table).insert({i_am_unique_col: 2}),
           knex(table).update({i_am_unique_col: knex.raw('i_am_unique_col - 1')}).where('i_am_unique_col', 2)
         ], it => it).reflect().then(res => {
+          logError(res);
+
           expect(res.isRejected()).to.equal(true);
           const error = wrapError(res.reason());
 

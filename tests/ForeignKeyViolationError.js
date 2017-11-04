@@ -1,6 +1,7 @@
 'use strict';
 
 const tables = require('../testUtils').tables;
+const logError = require('../testUtils').logError;
 const expect = require('expect.js');
 const Promise = require('bluebird');
 const wrapError = require('../').wrapError;
@@ -42,6 +43,8 @@ module.exports = (session) => {
           .insert({foreign_key: 123456})
           .reflect()
           .then(res => {
+            logError(res);
+
             expect(res.isRejected()).to.equal(true);
             const error = wrapError(res.reason());
 
@@ -61,6 +64,8 @@ module.exports = (session) => {
           .insert({foreignKey: 123456})
           .reflect()
           .then(res => {
+            logError(res);
+
             expect(res.isRejected()).to.equal(true);
             const error = wrapError(res.reason());
 
@@ -83,6 +88,8 @@ module.exports = (session) => {
         }).then(ids => {
           return knex(sourceTable).update({foreign_key: 123456}).where('id', ids[0]);
         }).reflect().then(res => {
+          logError(res);
+
           expect(res.isRejected()).to.equal(true);
           const error = wrapError(res.reason());
 
@@ -101,6 +108,8 @@ module.exports = (session) => {
         }).then(ids => {
           return knex(sourceTable).update({foreignKey: 123456}).where('id', ids[0]);
         }).reflect().then(res => {
+          logError(res);
+
           expect(res.isRejected()).to.equal(true);
           const error = wrapError(res.reason());
 
@@ -123,6 +132,8 @@ module.exports = (session) => {
         }).then(foreignKey => {
           return knex(targetTable).delete().where('id', foreignKey);
         }).reflect().then(res => {
+          logError(res);
+
           expect(res.isRejected()).to.equal(true);
           const error = wrapError(res.reason());
 

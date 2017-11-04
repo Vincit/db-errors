@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Vincit/db-errors.svg?branch=master)](https://travis-ci.org/Vincit/db-errors)
+
 # Unified error API for node.js SQL DB drivers
 
 This project is an attempt to create a unified API for node.js SQL DB driver errors. Currently each

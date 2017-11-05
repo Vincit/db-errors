@@ -1,11 +1,13 @@
 'use strict';
 
-const TestSession = require('./TestSession').TestSession;
-const logError = require('./errors').logError;
-const tables = require('./tables').tables;
+const { TestSession } = require('./TestSession');
+const { logVersions } = require('./logVersions');
+const { logError } = require('./errors');
+const { tables } = require('./tables');
 
 module.exports = {
   TestSession,
+  logVersions,
   logError,
   tables
 };

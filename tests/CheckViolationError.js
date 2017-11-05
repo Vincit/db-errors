@@ -1,14 +1,8 @@
-'use strict';
-
-const tables = require('../testUtils').tables;
-const logError = require('../testUtils').logError;
 const expect = require('expect.js');
 const Promise = require('bluebird');
-const wrapError = require('../').wrapError;
 
-const DBError = require('../').DBError;
-const CheckViolationError = require('../').CheckViolationError;
-const ConstraintViolationError = require('../').ConstraintViolationError;
+const { tables, logError } = require('../testUtils');
+const { wrapError, DBError, CheckViolationError, ConstraintViolationError } = require('../');
 
 module.exports = (session) => {
   if (session.isMySql()) {

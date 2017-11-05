@@ -1,13 +1,8 @@
-'use strict';
-
-const tables = require('../testUtils').tables;
-const logError = require('../testUtils').logError;
 const expect = require('expect.js');
 const Promise = require('bluebird');
-const wrapError = require('../').wrapError;
 
-const DBError = require('../').DBError;
-const DataError = require('../').DataError;
+const { tables, logError } = require('../testUtils');
+const { wrapError, DBError, DataError } = require('../');
 
 module.exports = (session) => {
   const knex = session.knex;

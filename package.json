@@ -23,11 +23,20 @@
     "error",
     "handler"
   ],
-  "author": "Sami Koskimäki (sami.koskimaki@vincit.com)",
+  "author": {
+    "name": "Sami Koskimäki",
+    "email": "sami.koskimaki@vincit.com",
+    "url": "https://github.com/koskimas"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Vincit/db-errors/issues"
   },
+  "files": [
+    "README.md",
+    "LICENSE",
+    "lib/*"
+  ],
   "homepage": "https://github.com/Vincit/db-errors#readme",
   "devDependencies": {
     "bluebird": "^3.5.0",

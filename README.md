@@ -2,9 +2,11 @@
 
 # Unified error API for node.js SQL DB drivers
 
-This project is an attempt to create a unified API for node.js SQL DB driver errors. Currently each
-driver throws their own kind of errors and libraries like knex, Bookshelf and objection.js simply
-pass these errors through. It's usually very difficult to reason with these errors.
+This project is an attempt to create a unified API for node.js SQL DB driver errors. Each driver 
+throws their own kind of errors and libraries like knex, Bookshelf and objection.js simply
+pass these errors through. It's usually very difficult to reason with these errors. This
+library wraps those errors to error classes that are the same for all drivers. The wrapped
+error classes also expose useful information about the errors.
 
 <br>
 <br>

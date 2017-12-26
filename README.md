@@ -10,7 +10,7 @@ error classes also expose useful information about the errors.
 
 # Contributions and suggestions are most welcome
 
-Currently very basic set of errors are handled. If you have and idea for an error we should
+Currently a very basic set of errors is handled. If you have an idea for an error we should
 handle, please open an issue and we'll see what we can do to add it.
 
 <br>

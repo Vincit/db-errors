@@ -8,6 +8,11 @@ pass these errors through. It's usually very difficult to reason with these erro
 library wraps those errors to error classes that are the same for all drivers. The wrapped
 error classes also expose useful information about the errors.
 
+# Contributions and suggestions are most welcome
+
+Currently very basic set of errors are handled. If you have and idea for an error we should
+handle, please open an issue and we'll see what we can do to add it.
+
 <br>
 <br>
 

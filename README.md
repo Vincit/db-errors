@@ -8,6 +8,8 @@ pass these errors through. It's usually very difficult to reason with these erro
 library wraps those errors to error classes that are the same for all drivers. The wrapped
 error classes also expose useful information about the errors.
 
+__NOTE__: Only MySQL, Sqlite3 and PostgreSQL are officially supported (tested).
+
 # Contributions and suggestions are most welcome
 
 Currently a very basic set of errors is handled. If you have an idea for an error we should

@@ -23,6 +23,10 @@ class TestSession {
   isSqlite() {
     return isSqlite(this.knex);
   }
+
+  destroy() {
+    return this.knex.destroy();
+  }
 }
 
 function getDialect(knex) {

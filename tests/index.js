@@ -33,6 +33,20 @@ describe('tests', () => {
       }
     }
   }, {
+    client: 'mysql2',
+
+    connection: {
+      host: '127.0.0.1',
+      user: 'db_errors',
+      database: 'db_errors_test'
+    },
+
+    pool: {
+      afterCreate: (conn, cb) => {
+        conn.query(`SET sql_mode = 'STRICT_ALL_TABLES'`, cb);
+      }
+    }
+  }, {
     client: 'postgres',
 
     connection: {
@@ -56,6 +70,8 @@ describe('tests', () => {
       require('./ForeignKeyViolationError')(session);
       require('./CheckViolationError')(session);
       require('./DataError')(session);
+
+      after(() => session.destroy());
     });
 
   });

@@ -88,7 +88,7 @@ class UniqueViolationError extends ConstraintViolationError {
   // Available for: postgres, sqlite
   columns: string[]
 
-  // The table that has the colums.
+  // The table that has the columns.
   //
   // Available for: postgres, sqlite
   table: string
@@ -112,7 +112,7 @@ class NotNullViolationError extends ConstraintViolationError {
   // Available for: postgres, sqlite, mysql
   column: string
 
-  // The table that has the colums.
+  // The table that has the columns.
   //
   // Available for: postgres, sqlite
   table: string

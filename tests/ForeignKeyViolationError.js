@@ -46,7 +46,7 @@ module.exports = (session) => {
             expect(error).to.be.a(ConstraintViolationError);
             expect(error).to.be.a(ForeignKeyViolationError);
 
-            if (session.isPostgres() || session.isMySql()) {
+            if (session.isPostgres() || isMysqlV2Error(session, error)) {
               expect(error.table).to.equal('source');
               expect(error.constraint).to.equal('source_foreign_key_foreign');
             }
@@ -65,7 +65,7 @@ module.exports = (session) => {
 
             expect(error).to.be.a(ForeignKeyViolationError);
 
-            if (session.isPostgres() || session.isMySql()) {
+            if (session.isPostgres() || isMysqlV2Error(session, error)) {
               expect(error.table).to.equal('source');
               expect(error.constraint).to.equal('source_foreignkey_foreign');
             }
@@ -89,7 +89,7 @@ module.exports = (session) => {
 
           expect(error).to.be.a(ForeignKeyViolationError);
 
-          if (session.isPostgres() || session.isMySql()) {
+          if (session.isPostgres() || isMysqlV2Error(session, error)) {
             expect(error.table).to.equal('source');
             expect(error.constraint).to.equal('source_foreign_key_foreign');
           }
@@ -109,7 +109,7 @@ module.exports = (session) => {
 
           expect(error).to.be.a(ForeignKeyViolationError);
 
-          if (session.isPostgres() || session.isMySql()) {
+          if (session.isPostgres() || isMysqlV2Error(session, error)) {
             expect(error.table).to.equal('source');
             expect(error.constraint).to.equal('source_foreignkey_foreign');
           }
@@ -133,7 +133,7 @@ module.exports = (session) => {
 
           expect(error).to.be.a(ForeignKeyViolationError);
 
-          if (session.isPostgres() || session.isMySql()) {
+          if (session.isPostgres() || isMysqlV2Error(session, error)) {
             expect(error.table).to.equal('source');
             expect(error.constraint).to.equal('source_foreign_key_foreign');
           }
@@ -144,3 +144,10 @@ module.exports = (session) => {
 
   });
 };
+
+function isMysqlV2Error(session, error) {
+  return (
+    session.isMySql() &&
+    error.nativeError.code.indexOf('_2') !== -1
+  )
+}

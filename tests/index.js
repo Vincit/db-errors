@@ -1,6 +1,5 @@
 const os = require('os');
 const path = require('path');
-const Promise = require('bluebird');
 const { TestSession, logVersions } = require('../testUtils');
 
 describe('tests', () => {

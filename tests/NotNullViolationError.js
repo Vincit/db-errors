@@ -66,6 +66,28 @@ module.exports = (session) => {
         });
       });
 
+      it('missing column', () => {
+        return knex(table)
+          .insert({notNullableString: 'foo'})
+          .reflect()
+          .then(res => {
+            logError(res);
+
+            expect(res.isRejected()).to.equal(true);
+            const error = wrapError(res.reason());
+
+            expect(error).to.be.a(DBError);
+            expect(error).to.be.a(ConstraintViolationError);
+            expect(error).to.be.a(NotNullViolationError);
+
+            expect(error.column).to.eql('not_nullable');
+
+            if (session.isPostgres() || session.isSqlite()) {
+              expect(error.table).to.equal(table);
+            }
+          });
+      });
+
     });
 
     describe('update', () => {

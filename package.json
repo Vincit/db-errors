@@ -1,6 +1,6 @@
 {
   "name": "db-errors",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Unified node.js error API for mysql, postgres and sqlite3",
   "main": "lib/dbErrors.js",
   "scripts": {

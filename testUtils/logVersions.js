@@ -19,6 +19,12 @@ function logVersions(session) {
       const keys = Object.keys(row);
       console.log('sqlite', row[keys[0]]);
     });
+  } else if (session.isMssql()) {
+    promise = session.knex.raw('SELECT @@VERSION').then(rows => {
+      const row = rows[0];
+      const keys = Object.keys(row);
+      console.log('mssql', row[keys[0]]);
+    });
   }
 
   return promise.reflect().then(() => {

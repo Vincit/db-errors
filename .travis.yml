@@ -13,12 +13,12 @@ addons:
       - postgresql-client-10
 
 node_js:
-  - '6'
-  - '7'
-  - '8'
-  - '9'
-  - '10'
-  - '11'
+  - "6"
+  - "7"
+  - "8"
+  - "9"
+  - "10"
+  - "11"
 
 env:
   - POSTGRESQL_VERSION=9.4 MYSQL_VERSION=5.5
@@ -33,6 +33,7 @@ before_install:
   - sudo service mysql stop || sudo service mysql-5.6 stop || sudo stop mysql-5.6 || sudo stop mysql || echo "failed to stop mysql"
   - sudo docker pull mysql:$MYSQL_VERSION
   - sudo docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -d mysql:$MYSQL_VERSION
+  - sudo docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=eioC9vvCZzQSy4S9g37i' -p 1433:1433 -d microsoft/mssql-server-linux:2017-CU8
   - sleep 20
 
 before_script:

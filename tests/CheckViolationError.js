@@ -39,7 +39,17 @@ module.exports = (session) => {
             CHECK (value1 < 10),
             CHECK (theValue < 20)
           );
-        `
+        `,
+        // Primary key cannot be null in MSSQL
+        mssql: `
+          CREATE TABLE "${table}" (
+            id         int,
+            value1     integer,
+            "theValue" integer,
+      
+            CONSTRAINT ${table}_value1_check CHECK (value1 < 10),
+            CONSTRAINT ${table}_theValue_check CHECK ("theValue" < 20)
+        );`
       }]
     }]);
 

@@ -48,6 +48,11 @@ module.exports = (session) => {
           if (session.isPostgres() || session.isMySql()) {
             expect(error.constraint).to.equal('thetable_i_am_unique_col_unique');
           }
+
+          if (session.isMssql()) {
+            expect(error.table).to.equal('dbo.' + table);
+            expect(error.constraint).to.equal('thetable_uniquepart1_uniquepart2_unique');
+          }
         });
       });
 
@@ -71,6 +76,11 @@ module.exports = (session) => {
           }
 
           if (session.isPostgres() || session.isMySql()) {
+            expect(error.constraint).to.equal('thetable_uniquepart1_uniquepart2_unique');
+          }
+
+          if (session.isMssql()) {
+            expect(error.table).to.equal('dbo.' + table);
             expect(error.constraint).to.equal('thetable_uniquepart1_uniquepart2_unique');
           }
         });
@@ -101,6 +111,11 @@ module.exports = (session) => {
           if (session.isPostgres() || session.isMySql()) {
             expect(error.constraint).to.equal('thetable_i_am_unique_col_unique');
           }
+
+          if (session.isMssql()) {
+            expect(error.table).to.equal('dbo.' + table);
+            expect(error.constraint).to.equal('thetable_uniquepart1_uniquepart2_unique');
+          }
         });
       });
 
@@ -124,6 +139,11 @@ module.exports = (session) => {
 
           if (session.isPostgres() || session.isMySql()) {
             expect(error.constraint).to.equal('thetable_i_am_unique_col_unique');
+          }
+
+          if (session.isMssql()) {
+            expect(error.table).to.equal('dbo.' + table);
+            expect(error.constraint).to.equal('thetable_uniquepart1_uniquepart2_unique');
           }
         });
       });

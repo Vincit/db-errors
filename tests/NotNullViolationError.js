@@ -41,6 +41,10 @@ module.exports = (session) => {
             if (session.isPostgres() || session.isSqlite()) {
               expect(error.table).to.equal(table);
             }
+
+            if (session.isMssql()) {
+              expect(error.table).to.equal('master.dbo.' + table);
+            }
           });
       });
 
@@ -63,6 +67,10 @@ module.exports = (session) => {
           if (session.isPostgres() || session.isSqlite()) {
             expect(error.table).to.equal(table);
           }
+
+          if (session.isMssql()) {
+            expect(error.table).to.equal('master.dbo.' + table);
+          }
         });
       });
 
@@ -84,6 +92,10 @@ module.exports = (session) => {
 
             if (session.isPostgres() || session.isSqlite()) {
               expect(error.table).to.equal(table);
+            }
+
+            if (session.isMssql()) {
+              expect(error.table).to.equal('master.dbo.' + table);
             }
           });
       });
@@ -111,6 +123,10 @@ module.exports = (session) => {
           if (session.isPostgres() || session.isSqlite()) {
             expect(error.table).to.equal(table);
           }
+
+          if (session.isMssql()) {
+            expect(error.table).to.equal('master.dbo.' + table);
+          }
         });
       });
 
@@ -131,6 +147,10 @@ module.exports = (session) => {
 
           if (session.isPostgres() || session.isSqlite()) {
             expect(error.table).to.equal(table);
+          }
+
+          if (session.isMssql()) {
+            expect(error.table).to.equal('master.dbo.' + table);
           }
         });
       });

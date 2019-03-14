@@ -53,6 +53,15 @@ describe('tests', () => {
       user: 'db_errors',
       database: 'db_errors_test'
     }
+  }, {
+    client: 'mssql',
+    connection: {
+      host: '127.0.0.1',
+      user: 'sa',
+      // MSSQL Requires a sufficiently complex
+      password: 'eioC9vvCZzQSy4S9g37i',
+      port: 1433
+    }
   }];
 
   testDatabaseConfigs.forEach(knexConfig => {

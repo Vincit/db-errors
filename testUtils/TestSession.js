@@ -20,6 +20,10 @@ class TestSession {
     return isMySql(this.knex);
   }
 
+  isMssql() {
+    return isMssql(this.knex);
+  }
+
   isSqlite() {
     return isSqlite(this.knex);
   }
@@ -43,6 +47,10 @@ function isMySql(knex) {
 
 function isSqlite(knex) {
   return getDialect(knex) === 'sqlite3';
+}
+
+function isMssql(knex) {
+  return getDialect(knex) === 'mssql';
 }
 
 

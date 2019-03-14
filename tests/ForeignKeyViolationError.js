@@ -50,6 +50,11 @@ module.exports = (session) => {
               expect(error.table).to.equal('source');
               expect(error.constraint).to.equal('source_foreign_key_foreign');
             }
+
+            if (session.isMssql()) {
+              expect(error.table).to.equal('dbo.target');
+              expect(error.constraint).to.equal('source_foreign_key_foreign');
+            }
           });
       });
 
@@ -67,6 +72,11 @@ module.exports = (session) => {
 
             if (session.isPostgres() || isMysqlV2Error(session, error)) {
               expect(error.table).to.equal('source');
+              expect(error.constraint).to.equal('source_foreignkey_foreign');
+            }
+
+            if (session.isMssql()) {
+              expect(error.table).to.equal('dbo.target');
               expect(error.constraint).to.equal('source_foreignkey_foreign');
             }
           });
@@ -93,6 +103,11 @@ module.exports = (session) => {
             expect(error.table).to.equal('source');
             expect(error.constraint).to.equal('source_foreign_key_foreign');
           }
+
+          if (session.isMssql()) {
+            expect(error.table).to.equal('dbo.target');
+            expect(error.constraint).to.equal('source_foreign_key_foreign');
+          }
         });
       });
 
@@ -111,6 +126,11 @@ module.exports = (session) => {
 
           if (session.isPostgres() || isMysqlV2Error(session, error)) {
             expect(error.table).to.equal('source');
+            expect(error.constraint).to.equal('source_foreignkey_foreign');
+          }
+
+          if (session.isMssql()) {
+            expect(error.table).to.equal('dbo.target');
             expect(error.constraint).to.equal('source_foreignkey_foreign');
           }
         });
@@ -135,6 +155,11 @@ module.exports = (session) => {
 
           if (session.isPostgres() || isMysqlV2Error(session, error)) {
             expect(error.table).to.equal('source');
+            expect(error.constraint).to.equal('source_foreign_key_foreign');
+          }
+
+          if (session.isMssql()) {
+            expect(error.table).to.equal('dbo.source');
             expect(error.constraint).to.equal('source_foreign_key_foreign');
           }
         });

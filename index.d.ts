@@ -21,7 +21,7 @@ declare namespace DbTypes {
 
     class NotNullViolationError extends ConstraintViolationError {
         table: string;
-        constraint: string;
+        column: string;
     }
 
     class UniqueViolationError extends ConstraintViolationError {

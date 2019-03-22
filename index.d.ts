@@ -1,19 +1,8 @@
 declare namespace DbTypes {
-    type ClientType = 'mysql' | 'sqlite' | 'postgres';
-
-    interface DbErrorOpts {
-        nativeError: {
-            message: string
-        }
-        client: ClientType
-    }
 
     class DBError extends Error {
         name: string;
         nativeError: Error;
-        client: ClientType;
-
-        constructor(args?: DbErrorOpts)
     }
 
     class CheckViolationError extends DBError {
@@ -46,7 +35,6 @@ declare namespace DbTypes {
     export {
         wrapError,
 
-        DBError,
         CheckViolationError,
         ConstraintViolationError,
         DataError,

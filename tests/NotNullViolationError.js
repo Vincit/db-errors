@@ -43,7 +43,9 @@ module.exports = (session) => {
             }
 
             if (session.isMssql()) {
-              expect(error.table).to.equal('master.dbo.' + table);
+              expect(error.database).to.equal('master');
+              expect(error.schema).to.equal('dbo');
+              expect(error.table).to.equal(table);
             }
           });
       });
@@ -69,7 +71,9 @@ module.exports = (session) => {
           }
 
           if (session.isMssql()) {
-            expect(error.table).to.equal('master.dbo.' + table);
+            expect(error.database).to.equal('master');
+            expect(error.schema).to.equal('dbo');
+            expect(error.table).to.equal(table);
           }
         });
       });
@@ -95,7 +99,9 @@ module.exports = (session) => {
             }
 
             if (session.isMssql()) {
-              expect(error.table).to.equal('master.dbo.' + table);
+              expect(error.database).to.equal('master');
+              expect(error.schema).to.equal('dbo');
+              expect(error.table).to.equal(table);
             }
           });
       });
@@ -125,7 +131,9 @@ module.exports = (session) => {
           }
 
           if (session.isMssql()) {
-            expect(error.table).to.equal('master.dbo.' + table);
+            expect(error.database).to.equal('master');
+            expect(error.schema).to.equal('dbo');
+            expect(error.table).to.equal(table);
           }
         });
       });
@@ -150,7 +158,9 @@ module.exports = (session) => {
           }
 
           if (session.isMssql()) {
-            expect(error.table).to.equal('master.dbo.' + table);
+            expect(error.database).to.equal('master');
+            expect(error.schema).to.equal('dbo');
+            expect(error.table).to.equal(table);
           }
         });
       });

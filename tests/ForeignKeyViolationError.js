@@ -52,7 +52,8 @@ module.exports = (session) => {
             }
 
             if (session.isMssql()) {
-              expect(error.table).to.equal('dbo.target');
+              expect(error.schema).to.equal('dbo');
+              expect(error.table).to.equal('target');
               expect(error.constraint).to.equal('source_foreign_key_foreign');
             }
           });
@@ -76,7 +77,8 @@ module.exports = (session) => {
             }
 
             if (session.isMssql()) {
-              expect(error.table).to.equal('dbo.target');
+              expect(error.schema).to.equal('dbo');
+              expect(error.table).to.equal('target');
               expect(error.constraint).to.equal('source_foreignkey_foreign');
             }
           });
@@ -105,7 +107,8 @@ module.exports = (session) => {
           }
 
           if (session.isMssql()) {
-            expect(error.table).to.equal('dbo.target');
+            expect(error.schema).to.equal('dbo');
+            expect(error.table).to.equal('target');
             expect(error.constraint).to.equal('source_foreign_key_foreign');
           }
         });
@@ -130,7 +133,8 @@ module.exports = (session) => {
           }
 
           if (session.isMssql()) {
-            expect(error.table).to.equal('dbo.target');
+            expect(error.schema).to.equal('dbo');
+            expect(error.table).to.equal('target');
             expect(error.constraint).to.equal('source_foreignkey_foreign');
           }
         });
@@ -159,7 +163,8 @@ module.exports = (session) => {
           }
 
           if (session.isMssql()) {
-            expect(error.table).to.equal('dbo.source');
+            expect(error.schema).to.equal('dbo');
+            expect(error.table).to.equal('source');
             expect(error.constraint).to.equal('source_foreign_key_foreign');
           }
         });

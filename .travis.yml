@@ -13,12 +13,12 @@ addons:
       - postgresql-client-10
 
 node_js:
-  - "6"
-  - "7"
-  - "8"
-  - "9"
-  - "10"
-  - "11"
+  - '6'
+  - '7'
+  - '8'
+  - '9'
+  - '10'
+  - '11'
 
 env:
   - POSTGRESQL_VERSION=9.4 MYSQL_VERSION=5.5

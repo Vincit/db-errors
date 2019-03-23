@@ -17,17 +17,21 @@ declare namespace DbTypes {
   class ForeignKeyViolationError extends ConstraintViolationError {
     table: string;
     constraint: string;
+    schema?: string;
   }
 
   class NotNullViolationError extends ConstraintViolationError {
     table: string;
     column: string;
+    database?: string;
+    schema?: string;
   }
 
   class UniqueViolationError extends ConstraintViolationError {
     table: string;
     columns: string[];
     constraint: string;
+    schema?: string;
   }
 
   function wrapError(err: Error): DBError

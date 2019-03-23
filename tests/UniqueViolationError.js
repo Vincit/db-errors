@@ -50,7 +50,7 @@ module.exports = (session) => {
           }
 
           if (session.isMssql()) {
-            expect(error.table).to.equal('dbo.' + table);
+            expect(error.table).to.equal(table);
             expect(error.constraint).to.equal('thetable_uniquepart1_uniquepart2_unique');
           }
         });
@@ -80,7 +80,8 @@ module.exports = (session) => {
           }
 
           if (session.isMssql()) {
-            expect(error.table).to.equal('dbo.' + table);
+            expect(error.schema).to.equal('dbo');
+            expect(error.table).to.equal(table);
             expect(error.constraint).to.equal('thetable_uniquepart1_uniquepart2_unique');
           }
         });
@@ -113,7 +114,8 @@ module.exports = (session) => {
           }
 
           if (session.isMssql()) {
-            expect(error.table).to.equal('dbo.' + table);
+            expect(error.schema).to.equal('dbo');
+            expect(error.table).to.equal(table);
             expect(error.constraint).to.equal('thetable_uniquepart1_uniquepart2_unique');
           }
         });
@@ -142,7 +144,8 @@ module.exports = (session) => {
           }
 
           if (session.isMssql()) {
-            expect(error.table).to.equal('dbo.' + table);
+            expect(error.schema).to.equal('dbo');
+            expect(error.table).to.equal(table);
             expect(error.constraint).to.equal('thetable_uniquepart1_uniquepart2_unique');
           }
         });

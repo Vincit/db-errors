@@ -2,18 +2,17 @@
 
 # Unified error API for node.js SQL DB drivers
 
-This project is an attempt to create a unified API for node.js SQL DB driver errors. Each driver 
+This project is an attempt to create a unified API for node.js SQL DB driver errors. Each driver
 throws their own kind of errors and libraries like knex, Bookshelf and objection.js simply
 pass these errors through. It's usually very difficult to reason with these errors. This
 library wraps those errors to error classes that are the same for all drivers. The wrapped
 error classes also expose useful information about the errors.
 
-__NOTE__: Only MySQL, Sqlite3 and PostgreSQL are officially supported (tested).
+__NOTE__: Only MySQL, Sqlite3, MSSQL and PostgreSQL are officially supported (tested).
 
 # Contributions and suggestions are most welcome
 
-Currently a very basic set of errors is handled. If you have an idea for an error we should
-handle, please open an issue and we'll see what we can do to add it.
+If you have an idea for an error we should handle, please open an issue and we'll see what we can do to add it.
 
 <br>
 <br>

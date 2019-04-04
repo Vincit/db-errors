@@ -8,19 +8,18 @@ services:
     ports:
       - "1433:1433"
   mysql:
-    image: "mysql:8.0.15"
-    environment: 
+    image: "mysql:5"
+    environment:
       - MYSQL_DATABASE=db_errors_test
       - MYSQL_USER=db_errors
-      - MYSQL_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD=root
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
     ports:
       - "3306:3306"
   postgres:
-    image: "postgres:11.2"
-    environment: 
+    image: "postgres:10"
+    environment:
       - POSTGRES_DB=db_errors_test
       - POSTGRES_USER=db_errors
-      - POSTGRES_PASSWORD=password
     ports:
-      - "3306:3306"
+      - "5432:5432"

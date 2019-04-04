@@ -178,14 +178,11 @@ class DataError extends DBError {
 
 ## Development setup
 
-Install mysql and postgres. Then run the following commands.
+Run the following commands in the repo root:
 
 ```shell
-psql -U postgres -c "CREATE USER db_errors SUPERUSER"
-psql -U postgres -c "CREATE DATABASE db_errors_test"
-mysql -u root -e "CREATE USER db_errors"
-mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO db_errors"
-mysql -u root -e "CREATE DATABASE db_errors_test"
+docker-compose up
+node setup-test-db.js
 ```
 
 Run tests:

@@ -38,7 +38,7 @@ declare namespace DbTypes {
 
   export {
     wrapError,
-
+    DBError,
     CheckViolationError,
     ConstraintViolationError,
     DataError,

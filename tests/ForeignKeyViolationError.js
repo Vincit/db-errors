@@ -25,8 +25,15 @@ module.exports = (session) => {
 
       build: (table) => {
         table.increments('id');
-        table.integer('foreign_key').unsigned().references('target.id');
-        table.integer('foreignKey').unsigned().references('target.id');
+
+        table.integer('foreign_key')
+          .unsigned()
+          .references('target.id');
+
+        table.integer('foreignKey')
+          .unsigned()
+          .references('target.id')
+          .onDelete('CASCADE');
       }
     }]);
 

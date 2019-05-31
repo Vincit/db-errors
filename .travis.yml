@@ -19,6 +19,7 @@ node_js:
   - '9'
   - '10'
   - '11'
+  - '12'
 
 env:
   - POSTGRESQL_VERSION=9.4 MYSQL_VERSION=5.5

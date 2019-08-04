@@ -34,7 +34,7 @@ declare namespace DbTypes {
     schema?: string;
   }
 
-  function wrapError(err: Error): DBError
+  function wrapError(err: Error, db?: string): DBError
 
   export {
     wrapError,

@@ -4,8 +4,9 @@
   "description": "Unified node.js error API for mysql, postgres and sqlite3",
   "main": "lib/dbErrors.js",
   "scripts": {
-    "test": "mocha --slow 10 --timeout 15000 --reporter spec --recursive tests",
-    "test-travis": "mocha --slow 10 --timeout 15000 --reporter spec --recursive tests"
+    "test": "DATABASES=sqlite3,postgres,mysql mocha --slow 10 --timeout 15000 --reporter spec --recursive tests",
+    "test:ci": "DATABASES=sqlite3,postgres,mysql,mssql mocha --slow 10 --timeout 15000 --reporter spec --recursive tests",
+    "prettier": "prettier --write \"{lib,tests}/**/*.{js,ts}\""
   },
   "repository": {
     "type": "git",
@@ -40,15 +41,15 @@
   ],
   "homepage": "https://github.com/Vincit/db-errors#readme",
   "devDependencies": {
-    "bluebird": "^3.5.3",
+    "bluebird": "^3.7.2",
     "expect.js": "^0.3.1",
-    "knex": "^0.14.6",
-    "lodash": "^4.17.11",
-    "mocha": "^5.2.0",
-    "mssql": "^5.0.3",
-    "mysql": "^2.16.0",
-    "mysql2": "^1.6.4",
-    "pg": "^7.7.1",
-    "sqlite3": "^4.0.4"
+    "knex": "^0.95.9",
+    "lodash": "^4.17.21",
+    "mocha": "^9.0.3",
+    "mssql": "^7.2.0",
+    "mysql": "^2.18.1",
+    "pg": "^8.7.1",
+    "prettier": "^2.3.2",
+    "sqlite3": "^5.0.2"
   }
 }

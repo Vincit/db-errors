@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/Vincit/db-errors.svg?branch=master)](https://travis-ci.org/Vincit/db-errors)
-
 # Unified error API for node.js SQL DB drivers
 
 This project is an attempt to create a unified API for node.js SQL DB driver errors. Each driver
@@ -8,7 +6,7 @@ pass these errors through. It's usually very difficult to reason with these erro
 library wraps those errors to error classes that are the same for all drivers. The wrapped
 error classes also expose useful information about the errors.
 
-__NOTE__: Only MySQL, Sqlite3, MSSQL and PostgreSQL are officially supported (tested).
+**NOTE**: Only MySQL, Sqlite3, MSSQL and PostgreSQL are officially supported (tested).
 
 # Contributions and suggestions are most welcome
 
@@ -20,12 +18,7 @@ If you have an idea for an error we should handle, please open an issue and we'l
 ## Usage
 
 ```js
-const {
-  wrapError,
-  DBError,
-  UniqueViolationError,
-  NotNullViolationError
-} = require('db-errors');
+const { wrapError, DBError, UniqueViolationError, NotNullViolationError } = require('db-errors');
 
 function errorHandler(err) {
   // wrapError function takes any error and returns a DBError subclass instance if
@@ -34,7 +27,9 @@ function errorHandler(err) {
   err = wrapError(err);
 
   if (err instanceof UniqueViolationError) {
-    console.log(`Unique constraint ${err.constraint} failed for table ${err.table} and columns ${err.columns}`);
+    console.log(
+      `Unique constraint ${err.constraint} failed for table ${err.table} and columns ${err.columns}`
+    );
   } else if (err instanceof NotNullViolationError) {
     console.log(`Not null constraint failed for table ${err.table} and column ${err.column}`);
   } else if (err instanceof DBError) {
@@ -56,7 +51,7 @@ function errorHandler(err) {
 ```ts
 class DBError extends Error {
   // The error thrown by the database client.
-  nativeError: Error
+  nativeError: Error;
 }
 ```
 
@@ -85,17 +80,17 @@ class UniqueViolationError extends ConstraintViolationError {
   // The columns that failed.
   //
   // Available for: postgres, sqlite
-  columns: string[]
+  columns: string[];
 
   // The table that has the columns.
   //
   // Available for: postgres, sqlite
-  table: string
+  table: string;
 
   // The constraint that was violated.
   //
   // Available for: postgres, mysql
-  constraint: string
+  constraint: string;
 }
 ```
 
@@ -109,12 +104,12 @@ class NotNullViolationError extends ConstraintViolationError {
   // The column that failed.
   //
   // Available for: postgres, sqlite, mysql
-  column: string
+  column: string;
 
   // The table that has the columns.
   //
   // Available for: postgres, sqlite
-  table: string
+  table: string;
 }
 ```
 
@@ -128,12 +123,12 @@ class ForeignKeyViolationError extends ConstraintViolationError {
   // The table that has the foreign key.
   //
   // Available for: postgres, mysql
-  table: string
+  table: string;
 
   // The constraint that was violated.
   //
   // Available for: postgres, mysql
-  constraint: string
+  constraint: string;
 }
 ```
 
@@ -148,12 +143,12 @@ class CheckViolationError extends ConstraintViolationError {
   // The table that has the check constraint.
   //
   // Available for: postgres
-  table: string
+  table: string;
 
   // The constraint that was violated.
   //
   // Available for: postgres
-  constraint: string
+  constraint: string;
 }
 ```
 
@@ -174,7 +169,6 @@ class DataError extends DBError {
 
 <br>
 <br>
-
 
 ## Development setup
 

@@ -43,7 +43,7 @@
   "devDependencies": {
     "bluebird": "^3.7.2",
     "expect.js": "^0.3.1",
-    "knex": "^0.95.9",
+    "knex": "^2.4.0",
     "lodash": "^4.17.21",
     "mocha": "^9.0.3",
     "mssql": "^7.2.0",
